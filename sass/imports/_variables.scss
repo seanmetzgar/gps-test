@@ -1,0 +1,12 @@
+$color-grey: #202021;
+$color-grey-light: lighten($color-grey, 10%);
+$color-blue: #008088;
+$color-blue-dark: darken($color-blue, 10%);
+$color-blue-light: lighten($color-blue, 10%);
+$color-green: #0C4031;
+$color-green-dark: darken($color-green, 10%);
+$color-green-light: lighten($color-green, 10%);
+$color-white: #fff;
+$color-black: #000;
+
+$color-app-bg: $color-blue;

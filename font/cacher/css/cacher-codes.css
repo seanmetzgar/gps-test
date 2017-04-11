@@ -1,0 +1,18 @@
+
+.icon-coordinates:before { content: '\e800'; } /* '' */
+.icon-settings:before { content: '\e802'; } /* '' */
+.icon-ok:before { content: '\e803'; } /* '' */
+.icon-cancel:before { content: '\e804'; } /* '' */
+.icon-heart:before { content: '\e805'; } /* '' */
+.icon-signal:before { content: '\e806'; } /* '' */
+.icon-camera:before { content: '\e807'; } /* '' */
+.icon-chat:before { content: '\e808'; } /* '' */
+.icon-target:before { content: '\e809'; } /* '' */
+.icon-asterisk:before { content: '\e80a'; } /* '' */
+.icon-plus:before { content: '\e80b'; } /* '' */
+.icon-minus:before { content: '\e80c'; } /* '' */
+.icon-email:before { content: '\f0e0'; } /* '' */
+.icon-navigate:before { content: '\f124'; } /* '' */
+.icon-compass:before { content: '\f14e'; } /* '' */
+.icon-menu:before { content: '\f1de'; } /* '' */
+.icon-share:before { content: '\f1e0'; } /* '' */
