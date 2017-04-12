@@ -16,6 +16,24 @@ html, body {
   position: relative;
   background-color: #008088; }
 
+.view {
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  .view.active {
+    display: block; }
+  .view.navigation {
+    z-index: 1; }
+  .view.settings {
+    z-index: 10;
+    background-color: rgba(32, 32, 33, 0.8);
+    display: block; }
+  .view.destination {
+    z-index: 2; }
+
 .compass-wrapper {
   position: absolute;
   top: 33%;

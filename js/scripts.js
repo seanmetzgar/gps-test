@@ -11,6 +11,12 @@ Number.prototype.toRad = function() {
 };
 
 //Globals
+var views = {
+	navigation : null,
+	settings : null,
+	destination: null
+};
+var $appWrapper = null;
 var $compass = null;
 var $currentPosition = null;
 var $destinationPosition = null;
@@ -262,22 +268,39 @@ var initializeGeolocationWatch = function() {
 };
 
 var initializeApp = function() {
-	var $compassWrapper = $("<div></div>").addClass("compass-wrapper").appendTo(".app-wrapper");
-	var $positionWrapper = $("<div></div>").addClass("position-wrapper").insertAfter($compassWrapper);
-	var $distanceWrapper = $("<div></div>").addClass("distance-wrapper").appendTo($compassWrapper);
+	var $compassWrapper = null;
+	var $positionWrapper = null;
+	var $distanceWrapper = null;
 
+	//Load Settings and Extend Defaults
 	settings = $.extend(defaults, loadSettings());
 
+	//Init Views
+	views.navigation = $("<div></div>").addClass("view").addClass("navigation").addClass("active").appendTo($appWrapper);
+	views.settings = $("<div></div>").addClass("view").addClass("settings").appendTo($appWrapper);
+	views.destination = $("<div></div>").addClass("view").addClass("destination").appendTo($appWrapper);
+
+	//Compass Elements
+	$compassWrapper = $("<div></div>").addClass("compass-wrapper").appendTo(views.navigation);
 	$compass = $("<div></div>").addClass("compass").prependTo($compassWrapper).data("rotation", 0);
+
+	//Distance & Accuracy Elements
+	$distanceWrapper = $("<div></div>").addClass("distance-wrapper").appendTo($compassWrapper);
 	$accuracy = $("<p></p>").addClass("accuracy").addClass("icon-signal").appendTo($distanceWrapper);
 	$distance = $("<p></p>").addClass("distance").appendTo($distanceWrapper);
+
+	//Position Elements
+	$positionWrapper = $("<div></div>").addClass("position-wrapper").appendTo(views.navigation);
 	$currentPosition = $("<p></p>").addClass("position").addClass("current").appendTo($positionWrapper);
 	$destinationPosition = $("<p></p>").addClass("position").addClass("destination").appendTo($positionWrapper);
 	$positionWrapper.find(".position").html("<span class=\"latitude\"></span>\n<span class=\"longitude\"></span>");
+
+	//Setup Compass & Location
 	setCompassRotation(0);
 	initializeGeolocationWatch();
 };
 
 $(document).ready(function() {
+	$appWrapper = $(".app-wrapper");
 	initializeApp();
 });

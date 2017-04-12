@@ -19,8 +19,7 @@ gulp.task("sass", function (cb) {
 		rename({ suffix: ".min" }),
 		sourcemaps.write("./"),
 		gulp.dest("./css/min")
-	],
-	cb);
+	], cb);
 });
 
 gulp.task("js", function (cb) {
@@ -31,8 +30,7 @@ gulp.task("js", function (cb) {
 		rename({ suffix: ".min" }),
 		sourcemaps.write("./"),
 		gulp.dest("./js/min")
-	],
-	cb);
+	], cb);
 });
 
 gulp.task("watch", function () {
