@@ -21,122 +21,140 @@ html, body {
   position: relative;
 
   background-color: $color-app-bg;
-}
 
-.view {
-  display: none;
+  .view {
+    display: none;
 
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-
-  &.active {
-    display: block;
-  }
-
-  &.navigation {
-    z-index: 1;
-  }
-  &.settings {
-    z-index: 10;
-    background-color: rgba($color-grey, 0.8);
-    display: block;
-  }
-  &.destination {
-    z-index: 2;
-  }
-
-
-}
-
-.compass-wrapper {
-  position: absolute;
-  top: 33%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 25vw;
-  max-width: 500px;
-  min-width: 250px;
-
-  .compass {
     position: absolute;
-    top: 0;
+    top: 0; bottom: 0;
     left: 0; right: 0;
-    @include aspect-ratio(1,1);
-    border: 2px solid $color-white;
-    box-sizing: border-box;
-    border-radius: 50%;
-    overflow: hidden;
 
-    &:after {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform-origin: 0% 50%;
-      transform: rotate(-90deg);
-      width: 60%; height: 2px;
+    &.active {
       display: block;
-      content: '';
-      background-color: $color-white;
-      border: 0;
     }
-  }
-}
 
-.distance-wrapper{
-  display: block;
-
-  text-align: center;
-  font-size: .9rem;
-  font-style: italic;
-
-  .accuracy {
-    color: rgba($color-white, 0.75);
-  }
-}
-
-.position {
-  display: inline-block;
-  height: auto; width: auto;
-  max-width: 50%;
-  padding: 0 15px; margin: 15px 0;
-  box-sizing: border-box;
-
-  position: absolute;
-  bottom: 0;
-
-  font-weight: 300;
-  font-size: .9rem;
-  font-style: italic;
-
-  span {
-    margin: 0;
-    display: block;
-  }
-
-  &:before {
-    display: block;
-    font-weight: 400;
-
-    font-style: normal;
-  }
-
-  &.current {
-    border-right: 1px solid $color-white;
-    right: 50%;
-
-    text-align: right;
-
-    &:before {
-      content: 'Current Coordinates';
+    &.navigation {
+      z-index: 1;
+    }
+    &.settings {
+      z-index: 10;
+      background-color: rgba($color-grey, 0.8);
+      display: block;
+    }
+    &.destination {
+      z-index: 2;
     }
   }
 
-  &.destination {
-    left: 50%;
+  //Settings
+  .settings-form {
+    max-width: 320px;
+    margin: 15px auto;
 
-    text-align: left;
+    .field {
+      margin: 15px 0;
+
+      p {
+        margin: 0 0 5px;
+        font-weight: bold;
+      }
+
+      .btn {
+        font-size: .9rem;
+      }
+    }
+  }
+
+  //Navigation
+  .compass-wrapper {
+    position: absolute;
+    top: 33%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25vw;
+    max-width: 500px;
+    min-width: 250px;
+
+    .compass {
+      position: absolute;
+      top: 0;
+      left: 0; right: 0;
+      @include aspect-ratio(1,1);
+      border: 2px solid $color-white;
+      box-sizing: border-box;
+      border-radius: 50%;
+      overflow: hidden;
+
+      &:after {
+        position: absolute;
+        top: 50%; left: 50%;
+        transform-origin: 0% 50%;
+        transform: rotate(-90deg);
+        width: 60%; height: 2px;
+        display: block;
+        content: '';
+        background-color: $color-white;
+        border: 0;
+      }
+    }
+  }
+
+  .distance-wrapper{
+    display: block;
+
+    text-align: center;
+    font-size: .9rem;
+    font-style: italic;
+
+    .accuracy {
+      color: rgba($color-white, 0.75);
+    }
+  }
+
+  .position {
+    display: inline-block;
+    height: auto; width: auto;
+    max-width: 50%;
+    padding: 0 15px; margin: 15px 0;
+    box-sizing: border-box;
+
+    position: absolute;
+    bottom: 0;
+
+    font-weight: 300;
+    font-size: .9rem;
+    font-style: italic;
+
+    span {
+      margin: 0;
+      display: block;
+    }
 
     &:before {
-      content: 'Destination Coordinates';
+      display: block;
+      font-weight: 400;
+
+      font-style: normal;
+    }
+
+    &.current {
+      border-right: 1px solid $color-white;
+      right: 50%;
+
+      text-align: right;
+
+      &:before {
+        content: 'Current Coordinates';
+      }
+    }
+
+    &.destination {
+      left: 50%;
+
+      text-align: left;
+
+      &:before {
+        content: 'Destination Coordinates';
+      }
     }
   }
 }

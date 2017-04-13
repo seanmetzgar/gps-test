@@ -6,12 +6,52 @@
 
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i" rel="stylesheet">
 	<link rel="stylesheet" href="font/cacher/css/cacher.css">
-	<link rel="stylesheet" href="css/min/styles.min.css">
+	<link rel="stylesheet" href="css/dist/all.css">
 </head>
-<body>
-	<div class="app-wrapper"></div>
+<!--
+var defaults = {
+	imperial : true,
+	hemispheres : true,
+	format : "DMS",
+	destination : false,
+	zerofill : false
+};
+-->
 
-	<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
-	<script type="text/javascript" src="js/min/scripts.min.js"></script>
+<body>
+	<div class="app-wrapper">
+		<section class="view settings">
+			<form class="settings-form text-center">
+				<h2>Settings</h2>
+
+				<div class="field">
+					<p>Units</p>
+					<div class="btn-group" data-field="imperial" role="group" aria-label="Units">
+					  <button type="button" class="btn" data-value="true">Imperial</button>
+					  <button type="button" class="btn" data-value="false">Metric</button>
+					</div>
+				</div>
+
+				<div class="field">
+					<p>Coordinate Format</p>
+					<div class="btn-group" data-field="format" role="group" aria-label="Coordinate Format">
+					  <button type="button" class="btn" data-value="D">D.D&deg;</button>
+					  <button type="button" class="btn" data-value="DM">D&deg; M.M'</button>
+					  <button type="button" class="btn" data-value="DMS">D&deg; M' S.S"</button>
+					</div>
+				</div>
+
+				<div class="field">
+					<p>Hemisphere Mode</p>
+					<div class="btn-group" data-field="hemispheres" role="group" aria-label="Coordinate Format">
+					  <button type="button" class="btn" data-value="true">N/S &amp; E/W</button>
+					  <button type="button" class="btn" data-value="false">Positive &amp; Negative</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</div>
+
+	<script type="text/javascript" src="js/dist/all.js"></script>
 </body>
 </html>

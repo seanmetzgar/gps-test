@@ -16,6 +16,11 @@ var views = {
 	settings : null,
 	destination: null
 };
+var settingFields = {
+	imperial: null,
+	hemispheres: null,
+	format: null,
+};
 var $appWrapper = null;
 var $compass = null;
 var $currentPosition = null;
@@ -33,6 +38,7 @@ var defaults = {
 	zerofill : false
 };
 var settings = false;
+var $settings = null;
 
 //Functions
 var checkBoolean = function(value) {
@@ -145,7 +151,7 @@ var formatDisplayCoordinate = function(coord, type, hemispheres, format, zerofil
 				absDegrees.toPrecision(6).toString();
 		}
 
-		coord = (hemispheres) ? 
+		coord = (hemispheres) ?
 			currentHemisphere + absDegrees + "&deg;":
 			((coord < 0) ? "-" : "") + absDegrees + "&deg;";
 	} else {
@@ -261,6 +267,12 @@ var loadSettings = function() {
 	return loadedSettings;
 };
 
+var saveSettings = function() {
+	if (typeof localStorage !== "undefined") {
+		localStorage.setItem("cacherSettings", JSON.stringify(settings));
+	}
+};
+
 var initializeGeolocationWatch = function() {
     if (navigator.geolocation) {
         geolocationWatch = navigator.geolocation.watchPosition(updatePosition);
@@ -276,8 +288,8 @@ var initializeApp = function() {
 	settings = $.extend(defaults, loadSettings());
 
 	//Init Views
-	views.navigation = $("<div></div>").addClass("view").addClass("navigation").addClass("active").appendTo($appWrapper);
-	views.settings = $("<div></div>").addClass("view").addClass("settings").appendTo($appWrapper);
+	views.settings = $(".view.settings");
+	views.navigation = $("<div></div>").addClass("view").addClass("navigation").addClass("active").prependTo($appWrapper);
 	views.destination = $("<div></div>").addClass("view").addClass("destination").appendTo($appWrapper);
 
 	//Compass Elements
@@ -298,6 +310,39 @@ var initializeApp = function() {
 	//Setup Compass & Location
 	setCompassRotation(0);
 	initializeGeolocationWatch();
+
+	//Settings Form
+	$settings = views.settings.find(".settings-form");
+	$settings.find(".btn").addClass("btn-secondary");
+
+	$settings.find(".btn-group").each(function() {
+		var $field = $(this);
+		var fieldName = $field.data("field");
+		var fieldValue = settings[fieldName];
+		fieldValue = String(fieldValue);
+		$field.find(".btn[data-value=" + fieldValue + "]")
+			.addClass("btn-info")
+			.removeClass("btn-secondary")
+			.siblings()
+			.addClass("btn-secondary")
+			.removeClass("btn-info");
+	});
+
+	$settings.find(".btn").on("click", function() {
+		var $button = $(this);
+		var $field = $button.parents(".btn-group");
+		var fieldName = $field.data("field");
+		var value = $button.data("value");
+		$button
+			.addClass("btn-info")
+			.removeClass("btn-secondary")
+			.siblings()
+			.addClass("btn-secondary")
+			.removeClass("btn-info");
+		value = (value === "true" || value === "false") ? JSON.parse(value) : value;
+		settings[fieldName] = value;
+		saveSettings();
+	});
 };
 
 $(document).ready(function() {

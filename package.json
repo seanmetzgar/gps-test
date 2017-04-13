@@ -17,6 +17,8 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.0.0",
     "gulp-sourcemaps": "^2.5.1",
+    "gulp-strip-comments": "^2.4.5",
+    "gulp-strip-css-comments": "^1.2.0",
     "gulp-uglify": "^2.0.0",
     "pump": "^1.0.2"
   }
