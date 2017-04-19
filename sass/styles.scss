@@ -26,12 +26,26 @@ a {
   }
 }
 
-.btn-close {
+.btn-app {
   display: block;
-  width: 2rem; height: auto;
-  font-size: 1.5rem; font-size:1;
+  width: 3rem; height: auto;
+  font-size: 1.5rem; line-height: 3rem;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: center;
   border: 0;
+
+  &.btn-close {
+
+  }
+
+  &.btn-menu,
+  &.btn-settings,
+  &.btn-destination {
+    background-color: $color-grey;
+  }
 }
+
 
 .app-wrapper {
   height: 100vh;
@@ -66,16 +80,16 @@ a {
 
   //Settings
   .view.settings {
+
     .btn-close {
       position: absolute;
       top: 15px; right: 15px;
-
     }
+
     .settings-form {
       position: absolute;
       top: 50%; left: 0; right: 0;
       transform: translateY(-50%);
-
       max-width: 320px;
       margin: 15px auto;
 
@@ -96,94 +110,105 @@ a {
 
 
   //Navigation
-  .compass-wrapper {
-    position: absolute;
-    top: 33%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 25vw;
-    max-width: 500px;
-    min-width: 250px;
-
-    .compass {
+  .view.navigation {
+    .btn-settings {
       position: absolute;
-      top: 0;
-      left: 0; right: 0;
-      @include aspect-ratio(1,1);
-      border: 2px solid $color-white;
-      box-sizing: border-box;
-      border-radius: 50%;
-      overflow: hidden;
+      bottom: 0; left: 0;
+    }
+    .btn-destination {
+      position: absolute;
+      bottom: 0; right: 0;
+    }
 
-      &:after {
+    .compass-wrapper {
+      position: absolute;
+      top: 33%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 25vw;
+      max-width: 500px;
+      min-width: 250px;
+
+      .compass {
         position: absolute;
-        top: 50%; left: 50%;
-        transform-origin: 0% 50%;
-        transform: rotate(-90deg);
-        width: 60%; height: 2px;
+        top: 0;
+        left: 0; right: 0;
+        @include aspect-ratio(1,1);
+        border: 2px solid $color-white;
+        box-sizing: border-box;
+        border-radius: 50%;
+        overflow: hidden;
+
+        &:after {
+          position: absolute;
+          top: 50%; left: 50%;
+          transform-origin: 0% 50%;
+          transform: rotate(-90deg);
+          width: 60%; height: 2px;
+          display: block;
+          content: '';
+          background-color: $color-white;
+          border: 0;
+        }
+      }
+    }
+
+    .distance-wrapper{
+      display: block;
+
+      text-align: center;
+      font-size: .9rem;
+      font-style: italic;
+
+      .accuracy {
+        color: rgba($color-white, 0.75);
+      }
+    }
+
+    .position {
+      display: inline-block;
+      height: auto; width: auto;
+      max-width: 50%;
+      padding: 0 15px; margin: 15px 0;
+      box-sizing: border-box;
+
+      position: absolute;
+      bottom: 3rem;
+
+      font-weight: 300;
+      font-size: .9rem;
+      font-style: italic;
+
+      span {
+        margin: 0;
         display: block;
-        content: '';
-        background-color: $color-white;
-        border: 0;
       }
-    }
-  }
-
-  .distance-wrapper{
-    display: block;
-
-    text-align: center;
-    font-size: .9rem;
-    font-style: italic;
-
-    .accuracy {
-      color: rgba($color-white, 0.75);
-    }
-  }
-
-  .position {
-    display: inline-block;
-    height: auto; width: auto;
-    max-width: 50%;
-    padding: 0 15px; margin: 15px 0;
-    box-sizing: border-box;
-
-    position: absolute;
-    bottom: 0;
-
-    font-weight: 300;
-    font-size: .9rem;
-    font-style: italic;
-
-    span {
-      margin: 0;
-      display: block;
-    }
-
-    &:before {
-      display: block;
-      font-weight: 400;
-
-      font-style: normal;
-    }
-
-    &.current {
-      border-right: 1px solid $color-white;
-      right: 50%;
-
-      text-align: right;
 
       &:before {
-        content: 'Current Coordinates';
+        display: block;
+        font-weight: 400;
+
+        font-style: normal;
       }
-    }
 
-    &.destination {
-      left: 50%;
+      &.current {
+        border-right: 1px solid $color-white;
+        right: 50%;
 
-      text-align: left;
+        text-align: right;
 
-      &:before {
-        content: 'Destination Coordinates';
+        &:before {
+          content: 'Current Coordinates';
+        }
+      }
+
+      &.destination {
+        left: 50%;
+
+        text-align: left;
+
+        &:before {
+          content: 'Destination Coordinates';
+        }
       }
     }
   }

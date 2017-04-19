@@ -16,6 +16,10 @@ var views = {
 	settings : null,
 	destination: null
 };
+var buttons = {
+	settings : null,
+	destination : null
+};
 var settingFields = {
 	imperial: null,
 	hemispheres: null,
@@ -307,6 +311,12 @@ var initializeApp = function() {
 	$destinationPosition = $("<p></p>").addClass("position").addClass("destination").appendTo($positionWrapper);
 	$positionWrapper.find(".position").html("<span class=\"latitude\"></span>\n<span class=\"longitude\"></span>");
 
+	//Button Elements
+	buttons.settings = $("<a></a>").addClass("btn-app").addClass("btn-settings").addClass("icon-settings").attr("href", "#").appendTo(views.navigation);
+	$("<span></span>").addClass("text").addClass("visuallyhidden").text("Settings").appendTo(buttons.settings);
+	buttons.destination = $("<a></a>").addClass("btn-app").addClass("btn-destination").addClass("icon-coordinates").attr("href", "#").appendTo(views.navigation);
+	$("<span></span>").addClass("text").addClass("visuallyhidden").text("Destination").appendTo(buttons.destination);
+
 	//Setup Compass & Location
 	setCompassRotation(0);
 	initializeGeolocationWatch();
@@ -350,6 +360,10 @@ var initializeApp = function() {
 		e.preventDefault();
 		$view.removeClass("active");
 
+	});
+	$(buttons.settings).on("click", function(e) {
+		e.preventDefault();
+		views.settings.addClass("active");
 	})
 };
 
