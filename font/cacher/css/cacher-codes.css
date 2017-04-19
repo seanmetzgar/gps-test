@@ -1,5 +1,6 @@
 
 .icon-coordinates:before { content: '\e800'; } /* '' */
+.icon-close:before { content: '\e801'; } /* '' */
 .icon-settings:before { content: '\e802'; } /* '' */
 .icon-ok:before { content: '\e803'; } /* '' */
 .icon-cancel:before { content: '\e804'; } /* '' */

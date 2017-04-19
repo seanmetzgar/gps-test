@@ -343,6 +343,14 @@ var initializeApp = function() {
 		settings[fieldName] = value;
 		saveSettings();
 	});
+
+	$(".btn-close").on("click", function(e) {
+		var $this = $(this);
+		var $view = $(this).parents(".view");
+		e.preventDefault();
+		$view.removeClass("active");
+
+	})
 };
 
 $(document).ready(function() {
