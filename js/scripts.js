@@ -20,6 +20,9 @@ var buttons = {
 	settings : null,
 	destination : null
 };
+var forms = {
+	settings : null
+};
 var settingFields = {
 	imperial: null,
 	hemispheres: null,
@@ -34,15 +37,13 @@ var $distance = null;
 var currentPosition = false;
 var destinationPosition = false;
 var geolocationWatch = false;
-var defaults = {
+var settings = {
 	imperial : true,
 	hemispheres : true,
 	format : "DMS",
 	destination : false,
 	zerofill : false
 };
-var settings = false;
-var $settings = null;
 
 //Functions
 var checkBoolean = function(value) {
@@ -288,8 +289,8 @@ var initializeApp = function() {
 	var $positionWrapper = null;
 	var $distanceWrapper = null;
 
-	//Load Settings and Extend Defaults
-	settings = $.extend(defaults, loadSettings());
+	//Load Settings and Extend the default settings stored the settings variable
+	settings = $.extend(settings, loadSettings());
 
 	//Init Views
 	views.settings = $(".view.settings");
@@ -322,10 +323,10 @@ var initializeApp = function() {
 	initializeGeolocationWatch();
 
 	//Settings Form
-	$settings = views.settings.find(".settings-form");
-	$settings.find(".btn").addClass("btn-secondary");
+	forms.settings = views.settings.find(".settings-form");
+	forms.settings.find(".btn").addClass("btn-secondary");
 
-	$settings.find(".btn-group").each(function() {
+	forms.settings.find(".btn-group").each(function() {
 		var $field = $(this);
 		var fieldName = $field.data("field");
 		var fieldValue = settings[fieldName];
@@ -338,7 +339,7 @@ var initializeApp = function() {
 			.removeClass("btn-info");
 	});
 
-	$settings.find(".btn").on("click", function() {
+	forms.settings.find(".btn").on("click", function() {
 		var $button = $(this);
 		var $field = $button.parents(".btn-group");
 		var fieldName = $field.data("field");
